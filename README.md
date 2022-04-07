@@ -1,6 +1,5 @@
 # Sudoku Game
 ## Sudoku made in Python
-Requires dokusan package
+<p>Requires dokusan package</p>
 > pip install dokusan
-or play here instead:
-https://replit.com/@ptoughneigh/Sudoku-Game
+<p>Play here instead: https://replit.com/@ptoughneigh/Sudoku-Game</p>

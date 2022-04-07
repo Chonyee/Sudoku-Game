@@ -1,24 +1,9 @@
-# Sudoku Game
-## Sudoku made in Python
-<p>Requires dokusan package</p>
-> pip install dokusan
-<p><br>Play here instead: https://replit.com/@ptoughneigh/Sudoku-Game</p>
-![](https://i.imgur.com/4YeXYtO.png)
+# Sudoku Game made in Python
+Made for fun.
 
-
-# Birb Slayer
-
-<br>
-
-<div align="center">
-    <img src="https://i.imgur.com/xrno2Fl.png">
-</div>
-
-<br>
-
-Birb Slayer is a simple 2D Unity clicker game where the objective is to not let the birds past the left side of the screen.
-
-This project was created for my final project for CMP_SCI 3140 at UMSL. I plan on adding more features to the game.
+## Features
+Using Dokusan's feature to generate a solvable sudoku puzzle which then is arranged to a 2D array. Created own functions to solve the sudoku puzzle using one recursion.
+Game only asks for user input in order from columns to rows. User input is compared to solved 2D array.
 
 ## How to Play
 

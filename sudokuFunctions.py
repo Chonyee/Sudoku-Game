@@ -85,7 +85,7 @@ def printBoard(board):
   side = 9
   base = 3
   def expandLine(line):
-    return line[0]+line[5:9].join([line[1:5]*(base-1)]*base)+line[9:13]
+    return line[0] + line[5 : 9].join([line[1 : 5] * (base - 1)] * base)+ line[9 : 13]
   line0  = expandLine("╔═══╤═══╦═══╗")
   line1  = expandLine("║ . │ . ║ . ║")
   line2  = expandLine("╟───┼───╫───╢")
@@ -93,38 +93,51 @@ def printBoard(board):
   line4  = expandLine("╚═══╧═══╩═══╝")
 
   symbol = " 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  nums   = [[""]+[symbol[n] for n in row] for row in board]
+  nums   = [[""] + [symbol[n] for n in row] for row in board]
   print(line0)
-  for r in range(1,side+1):
-    print("".join(n+s for n,s in zip(nums[r-1],line1.split("."))))
-    print([line2,line3,line4][(r%side==0)+(r%base==0)])
+  for r in range(1, side + 1):
+    print("".join(n + s for n, s in zip(nums[r - 1], line1.split("."))))
+    print([line2 ,line3 ,line4][(r % side == 0) + (r % base == 0)])
 
-def validateNumber(number, i, j):
+def validateNumber(row, col):
   while True:
-    number = input("Enter number for Row {} Column {}: ".format(i+1, j+1))
-    try:
-      number = int(number)
-      break;
-    except ValueError:
-      pass
-  return number
+    number = input("Enter number for Row {} Column {}: ".format(row, col))
+    if number.isdigit():
+      if int(number) > 0 and int(number) < 10:
+        return int(number)
+      
+def validateRow():
+  while True:
+    row = input("Enter which row you would like to enter a number for: ")
+    if row.isdigit():
+      if int(row) > 0 and int(row) < 10:
+        return int(row)
+      
+def validateCol():
+  while True:
+    col = input("Enter which column you would like to enter a number for: ")
+    if col.isdigit():
+      if int(col) > 0 and int(col) < 10:
+        return int(col)
 
 def playGame():
   playBoard = genRandBoard()
   solvedBoard = np.copy(playBoard)
   sudoku(solvedBoard)
   printBoard(playBoard)
-  for i in range(9):
-    for j in range(9):
-      if playBoard[i][j] == 0:
-        while True:
-          number = ''
-          number = validateNumber(number, i, j)
-          if number == solvedBoard[i][j]:
-            print("Correct!")
-            playBoard[i][j] = number
-            printBoard(playBoard)
-            break
-          else: print("Wrong, try again..")
-  printBoard(playBoard)
+
+
+  while (playBoard.all != solvedBoard.all):
+    row = validateRow()
+    col = validateCol()
+    
+    if playBoard[row-1][col-1] == 0:
+      number = validateNumber(row, col)
+      if number == solvedBoard[row-1][col-1]:
+        print("Correct!")
+        playBoard[row-1][col-1] = number
+      else: print("Wrong, try again..")
+    else: print("\nNumber in the spot is already filled!")
+    printBoard(playBoard)
+
   pause = input("Board Solved!")

@@ -1,3 +1,4 @@
 import sudokuFunctions as sf
 
-sf.playGame()
+sf.playSudoku()
+pause = input("Board Solved!") # To stop program from closing after finishing...

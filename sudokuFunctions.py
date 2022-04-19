@@ -2,6 +2,7 @@ import numpy as np
 from dokusan import generators, renderers
 
 def fixBoard(board):
+  # Turn ex: 09102301205892310231 into a 2D array
   board = list(map(int, str(board)))
   fixedBoard = []
   for i in range(9):
@@ -94,6 +95,7 @@ def printBoard(board):
 
   symbol = " 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   nums   = [[""] + [symbol[n] for n in row] for row in board]
+  print("  1   2   3   4   5   6   7   8   9")
   print(line0)
   for r in range(1, side + 1):
     print("".join(n + s for n, s in zip(nums[r - 1], line1.split("."))))
@@ -120,24 +122,22 @@ def validateCol():
       if int(col) > 0 and int(col) < 10:
         return int(col)
 
-def playGame():
-  playBoard = genRandBoard()
-  solvedBoard = np.copy(playBoard)
-  sudoku(solvedBoard)
-  printBoard(playBoard)
+def playSudoku():
+  playBoard = genRandBoard() # Generate random sudoku board
+  solvedBoard = np.copy(playBoard) # Copies the sudoku board
+  sudoku(solvedBoard) # Solves one of the boards to be compared to later
 
+  printBoard(playBoard) # Prints the sudoku board nicely
 
   while (playBoard.all != solvedBoard.all):
-    row = validateRow()
-    col = validateCol()
+    row = validateRow() # Asks user for row number
+    column = validateCol() # Asks user for col number
     
-    if playBoard[row-1][col-1] == 0:
-      number = validateNumber(row, col)
-      if number == solvedBoard[row-1][col-1]:
+    if playBoard[row-1][column-1] == 0: # If the spot is empty
+      number = validateNumber(row, column) # Asks user for number
+      if number == solvedBoard[row-1][column-1]: # Compare that number to the finished sudoku board
         print("Correct!")
-        playBoard[row-1][col-1] = number
+        playBoard[row-1][column-1] = number
       else: print("Wrong, try again..")
-    else: print("\nNumber in the spot is already filled!")
+    else: print("\nNumber in the spot is already filled!") # If user chose spot that is not empty
     printBoard(playBoard)
-
-  pause = input("Board Solved!")

@@ -3,7 +3,7 @@ Made for fun.
 
 ## Features
 Using Dokusan's feature to generate a solvable sudoku puzzle which then is arranged to a 2D array. Created own functions to solve the sudoku puzzle using one recursion.
-Game only asks for user input in order from columns to rows. User input is compared to solved 2D array.
+Game now asks for row/col instead of going from row to row, column to column.
 
 ## How to Play
 

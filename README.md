@@ -1,5 +1,4 @@
-# Sudoku Game made in Python
-Made for fun.
+# Sudoku Game
 
 ## Features
 Using Dokusan's feature to generate a solvable sudoku puzzle which then is arranged to a 2D array. Created own functions to solve the sudoku puzzle using one recursion.
